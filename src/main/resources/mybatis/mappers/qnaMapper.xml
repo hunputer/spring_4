@@ -39,7 +39,7 @@
 		like '%'||#{search}||'%'
 	</select>
 	
-	<select id="getSelect" resultType="qnaDTO" parameterType="Long">
+	<select id="getOne" resultType="qnaDTO" parameterType="qnaDTO">
 		select * from qna
 		where num = #{num}
 	</select>
@@ -56,13 +56,18 @@
 		insert into qna values (qna_seq.nextval, #{title}, #{writer}, #{contents},sysdate,0,qna_seq.currval,0,0)
 	</insert>
 	
-	<update id="qnaReplyUpdate" parameterType="qnaDTO">
-		update qna set step=step+1 where ref=#{ref} and step>#{step}
+	<update id="setReplyUpdate" parameterType="qnaDTO">
+		update qna set step=step+1 where 
+		ref=(select ref from qna where num=#{num}) 
+		and step> (select step from qna where num=#{num})
 	</update>
 	
-	<insert id="qnaReply" parameterType="qnaDTO">
+	<insert id="setReply" parameterType="qnaDTO">
 		insert into qna values (qna_seq.nextval
-		, #{title}, #{writer}, #{contents}, sysdate, 0, #{ref}, #{step}, #{depth})
+		, #{title}, #{writer}, #{contents}, sysdate, 0, 
+		(select ref from qna where num=#{num}), 
+		(select step+1 from qna where num=#{num}), 
+		(select depth+1 from qna where num=#{num}))
 	</insert>
 
 </mapper>

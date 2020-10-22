@@ -5,6 +5,8 @@
 
 <configuration>
 	<typeAliases>
+		<typeAlias type="java.lang.Long" alias="Long"/>
+		<typeAlias type="com.choa.s4.board.BoardDTO" alias="boardDTO"/>
 		<typeAlias type="com.choa.s4.board.notice.NoticeDTO" alias="noticeDTO"/>
 		<typeAlias type="com.choa.s4.board.qna.QnaDTO" alias="qnaDTO"/>
 	</typeAliases>

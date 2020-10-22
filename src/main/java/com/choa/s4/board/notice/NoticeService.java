@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.choa.s4.board.BoardDAO;
 import com.choa.s4.board.BoardDTO;
 import com.choa.s4.board.BoardService;
 import com.choa.s4.util.Pager;
@@ -18,19 +19,18 @@ public class NoticeService implements BoardService {
 	@Override
 	public int setInsert(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return noticeDAO.setInsert(boardDTO);
 	}
 
 	@Override
 	public int setUpdate(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return noticeDAO.setUpdate(boardDTO);
 	}
 
 	@Override
 	public int setDelete(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return noticeDAO.setDelete(boardDTO);
 	}
 
 	@Override
@@ -43,8 +43,7 @@ public class NoticeService implements BoardService {
 
 	@Override
 	public BoardDTO getOne(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return noticeDAO.getOne(boardDTO);
 	}
 
 }

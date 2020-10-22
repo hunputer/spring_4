@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.choa.s4.board.notice.NoticeDAO">
+   <update id="setUpdate" parameterType="noticeDTO">
+      update board set title = #{title}, contents=#{contents} where num = #{num}
+   </update>
+   
+   <delete id="setDelete" parameterType="Long">
+      delete board where num = #{num}
+   </delete>
+   
+   <select id="getSelect" parameterType="Long" resultType="noticeDTO">
+      select * from board where num = #{num}
+   </select>
+   
+   <select id="getList" resultType="noticeDTO" parameterType="com.choa.s4.util.Pager">
+     select * from
+    (select rownum R, N.* from 
+    (select * from board where
+    <choose>
+    	<when test="kind == 'tt'">
+    		title
+    	</when>
+    	<when test="kind == 'wr'">
+    		writer
+    	</when>
+    	<otherwise>
+    		contents
+    	</otherwise>
+    </choose>
+     like '%'||#{search}||'%' order by num desc) N)
+    where R between #{startRow} and #{lastRow}
+   </select>
+
+   <insert id="setInsert"  parameterType="noticeDTO">
+      insert into board values(NOTICE.nextval, #{title},#{writer},#{contents},sysdate, 0)
+   </insert>
+   
+   <select id="getCount" resultType="Long" parameterType="com.choa.s4.util.Pager">
+        select count(num) from board 
+        where
+        <choose>
+        	<when test="kind == 'tt'">
+        		title
+        	</when>
+        	<when test="kind == 'wr'">
+        		writer
+        	</when>
+        	<otherwise>
+        		contents
+        	</otherwise>
+        </choose>
+        like '%'||#{search}||'%'
+   </select>
+
+</mapper>

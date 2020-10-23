@@ -9,5 +9,7 @@
 		<typeAlias type="com.choa.s4.board.BoardDTO" alias="boardDTO"/>
 		<typeAlias type="com.choa.s4.board.notice.NoticeDTO" alias="noticeDTO"/>
 		<typeAlias type="com.choa.s4.board.qna.QnaDTO" alias="qnaDTO"/>
+		<typeAlias type="com.choa.s4.member.memberUser.MemberUserDTO" alias="memberUserDTO"/>
+		<typeAlias type="com.choa.s4.member.MemberDTO" alias="memberDTO"/>
 	</typeAliases>
 </configuration>

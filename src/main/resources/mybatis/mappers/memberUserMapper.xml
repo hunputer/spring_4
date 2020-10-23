@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.choa.s4.member.memberUser.MemberUserDAO">	
+	<select id="getMemberLogin" parameterType="MemberDTO" resultType="MemberUserDTO">
+		select * from member_ch where id=#{id} and pw=#{pw}
+	</select>
+	
+	<update id="setMemberUpdate" parameterType="MemberDTO">
+		update member_ch set name=#{name}, email=#{email} where id=#{id}
+	</update>
+	
+	<delete id="setMemberDelete" parameterType="MemberDTO">
+		delete from member_ch where id=#{id}
+	</delete>
+</mapper>

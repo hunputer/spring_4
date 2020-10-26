@@ -15,4 +15,12 @@
 	<delete id="setMemberDelete" parameterType="MemberDTO">
 		delete from member_ch where id=#{id}
 	</delete>
+	
+	<insert id="setMemberInsert" parameterType="MemberDTO">
+		insert into member_ch values(NOTICE.nextval, #{id},#{pw},#{name},#{email})
+	</insert>
+	
+	<select id="getMemberFind" parameterType="MemberDTO" resultType="MemberUserDTO">
+		select * from member_ch where id=#{id}
+	</select>
 </mapper>

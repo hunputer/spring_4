@@ -29,5 +29,13 @@ public class MemberUserDAO implements MemberDAO {
 	public int setMemberDelete(MemberDTO memberDTO) throws Exception{
 		return sqlSession.delete(NAMESPACE+"setMemberDelete", memberDTO);
 	}
+	
+	public int setMemberInsert(MemberDTO memberDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE+"setMemberInsert", memberDTO);
+	}
+	
+	public MemberDTO getMemberFind(MemberDTO memberDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getMemberFind", memberDTO);
+	}
 
 }

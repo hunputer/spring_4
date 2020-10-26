@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.choa.s4.board.memo.MemoDAO">	
+	<delete id="setDelete" parameterType="MemoDTO">
+		delete memo where num = #{num}
+	</delete>
+	
+	<select id="getOne" parameterType="MemoDTO" resultType="MemoDTO">
+		select * from memo where num=#{num}	
+	</select>
+
+	<select id="getList" resultType="MemoDTO" parameterType="Pager">
+		select * from
+		(select rownum R, N.* from 
+		(select * from memo where 
+		<choose>			
+			<when test="kind == 'wr'">
+				writer
+			</when>
+			
+			<otherwise>
+				contents
+			</otherwise>
+		</choose>
+		like '%'||#{search}||'%' order by num desc) N)
+		where R between #{startRow} and #{lastRow}
+	</select>
+	
+	<select id="getCount" resultType="Long" parameterType="Pager">
+		select count(num) from memo
+		where 
+		<choose>
+			<when test="kind == 'wr'">
+				writer
+			</when>
+			<otherwise>
+				contents
+			</otherwise>
+		</choose>
+		like '%' || #{search} || '%'
+	</select>	
+	
+	<insert id="setInsert" parameterType="MemoDTO">
+		insert into memo values(qna_seq.nextval, #{writer}, #{contents}, sysdate)
+	</insert>
+	
+</mapper>

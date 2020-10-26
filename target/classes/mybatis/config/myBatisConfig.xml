@@ -11,5 +11,7 @@
 		<typeAlias type="com.choa.s4.board.qna.QnaDTO" alias="qnaDTO"/>
 		<typeAlias type="com.choa.s4.member.memberUser.MemberUserDTO" alias="memberUserDTO"/>
 		<typeAlias type="com.choa.s4.member.MemberDTO" alias="memberDTO"/>
+		<typeAlias type="com.choa.s4.util.Pager" alias="Pager"/>
+		<typeAlias type="com.choa.s4.board.memo.MemoDTO" alias="MemoDTO"/>
 	</typeAliases>
 </configuration>

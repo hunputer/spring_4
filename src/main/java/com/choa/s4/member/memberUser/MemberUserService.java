@@ -1,5 +1,7 @@
 package com.choa.s4.member.memberUser;
 
+import java.lang.reflect.Member;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,4 +28,11 @@ public class MemberUserService implements MemberService {
 		return memberUserDAO.setMemberDelete(memberDTO);
 	}
 
+	public int setMemberInsert(MemberDTO memberDTO) throws Exception{
+		return memberUserDAO.setMemberInsert(memberDTO);
+	}
+	
+	public MemberDTO getMemberFind(MemberDTO memberDTO) throws Exception{
+		return memberUserDAO.getMemberFind(memberDTO);
+	}
 }

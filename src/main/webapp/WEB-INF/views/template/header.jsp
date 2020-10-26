@@ -18,6 +18,7 @@
       <li class="active"><a href="${pageContext.request.contextPath}/">Home</a></li>
       <li><a href="${pageContext.request.contextPath}/notice/noticeList">Notice</a></li>
       <li><a href="${pageContext.request.contextPath}/qna/qnaList">qna</a></li>
+      <li><a href="${pageContext.request.contextPath}/memo/memoPage">Memo</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
      <c:choose>

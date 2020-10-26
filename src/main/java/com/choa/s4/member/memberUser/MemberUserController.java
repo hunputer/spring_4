@@ -18,6 +18,36 @@ public class MemberUserController {
 	@Autowired
 	private MemberUserService memberUserService;
 	
+	@PostMapping("memberFind")
+	public ModelAndView getMemberFind(MemberDTO memberDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		MemberDTO dto = memberUserService.getMemberFind(memberDTO);
+		String msg = "사용가능한 id 입니다";
+		if(dto != null) {
+			msg ="이미 사용중인 id 입니다.";
+		}
+		mv.addObject("msg", msg);
+		mv.setViewName("member/memberFind");
+		return mv;
+	}
+	
+	@GetMapping("memberJoin")
+	public ModelAndView setMemberInsert() throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("member/memberJoin");
+		return mv;
+	}
+	
+	@PostMapping("memberJoin")
+	public ModelAndView setMemberInsert(MemberDTO memberDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		System.out.println("memberJoin");
+		int result = memberUserService.setMemberInsert(memberDTO);
+		mv.setViewName("redirect:../");
+		
+		return mv;
+	} 
+	
 	@GetMapping("memberDelete")
 	public ModelAndView setMemberDelete(HttpSession httpSession) throws Exception {
 		ModelAndView mv = new ModelAndView();

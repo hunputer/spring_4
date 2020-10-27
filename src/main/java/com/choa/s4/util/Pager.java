@@ -24,7 +24,7 @@ public class Pager {
 	}
 	
 	public void makeRow() {
-		startRow = (this.getCurPage()-1)*this.getPerPage();
+		startRow = (this.getCurPage()-1)*this.getPerPage()+1;
 		lastRow = this.getCurPage() * this.getPerPage();
 	}
 	

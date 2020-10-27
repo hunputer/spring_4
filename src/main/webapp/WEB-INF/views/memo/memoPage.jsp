@@ -31,12 +31,23 @@
 		</div>
 		
 		
-		<div id="result"></div>
-		<button class="btn btn-danger del">더보기</button>
+		<div>
+		<table id="result" class="table table-border">
+		
+		</table>
+		</div>
+		<button class="btn btn-danger del" id="more">더보기</button>
 		
 	</div>
 <script type="text/javascript">
+	var curPage = 1;
 	getList();
+	
+	$("#more").click(function(){
+		curPage = curPage + 1;
+		getList();
+	})
+	
 	
 	//***************  DEL **************
 	$("#result").on("click", ".del", function() {
@@ -45,6 +56,8 @@
 		$.post("./memoDelete",{num:num}, function(data) {
 			data=data.trim();
 			if(data>0){
+				$("#result").html('');
+				curPage = 1;
 				getList();
 			}else {
 				alert("Delete Fail");
@@ -61,12 +74,26 @@
 	$("#write").click(function() {
 		var writer = $("#writer").val();
 		var contents = $("#contents").val();
-		$.post("./memoWrite",{writer:writer, contents:contents},function(result) {
-			alert(result);
-			$("#writer").val('');
-			$("#contents").val('');
-			getList();
-			
+	//	$.post("./memoWrite",{writer:writer, contents:contents},function(result) {
+	//		alert(result);
+	//		$("#writer").val('');
+	//		$("#contents").val('');
+	//		getList();
+	//		
+	//	});
+	
+		$.ajax({
+			url : "./memoWrite",
+			type : "POST",
+			data : {writer:writer, contents:contents},
+			success : function(result){
+					alert(result);
+					$("#writer").val('');
+					$("#contents").val('');
+					$("#result").html('');
+					curPage = 1;
+					getList();
+			}
 		});
 		
 		
@@ -78,8 +105,8 @@
 	
 	
 	function getList() {
-		$.get("./memoList", function(data) {
-			$("#result").html(data);
+		$.get("./memoList?curPage="+curPage, function(data) {
+			$("#result").append(data);
 		});
 		
 	}

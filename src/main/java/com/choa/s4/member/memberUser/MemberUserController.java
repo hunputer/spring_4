@@ -22,12 +22,12 @@ public class MemberUserController {
 	public ModelAndView getMemberFind(MemberDTO memberDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		MemberDTO dto = memberUserService.getMemberFind(memberDTO);
-		String msg = "사용가능한 id 입니다";
+		int result = 1;
 		if(dto != null) {
-			msg ="이미 사용중인 id 입니다.";
+			result = 0;
 		}
-		mv.addObject("msg", msg);
-		mv.setViewName("member/memberFind");
+		mv.addObject("msg", result);
+		mv.setViewName("common/ajaxResult");
 		return mv;
 	}
 	

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.choa.s4.member.MemberDTO;
@@ -39,10 +40,14 @@ public class MemberUserController {
 	}
 	
 	@PostMapping("memberJoin")
-	public ModelAndView setMemberInsert(MemberDTO memberDTO) throws Exception{
+	public ModelAndView setMemberInsert(MemberDTO memberDTO, MultipartFile photo) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		System.out.println("memberJoin");
-		int result = memberUserService.setMemberInsert(memberDTO);
+		System.out.println(photo.getOriginalFilename());
+		System.out.println(photo.getName());
+		System.out.println(photo.getSize());
+		System.out.println(photo.getContentType());
+		//int result = memberUserService.setMemberInsert(memberDTO);
 		mv.setViewName("redirect:../");
 		
 		return mv;

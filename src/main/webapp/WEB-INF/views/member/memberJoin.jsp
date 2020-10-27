@@ -31,7 +31,7 @@
 <c:import url="../template/header.jsp"></c:import>
 <div class="container">
 	<h3>Member Join Page</h3>
-	<form action="./memberJoin" method="post">
+	<form action="./memberJoin" method="post" id="frm" enctype="multipart/form-data">
 	    <div class="form-group">
 	      <label for="id">Id:</label>
 	      <input type="text" class="form-control" id="id" placeholder="Enter Id" name="id">
@@ -57,6 +57,11 @@
 	      <label for="email">Email:</label>
 	      <input type="text" class="form-control" id="email" placeholder="Enter Email" name="email">
 	      <div class="emptyResult"></div>
+	    </div>
+	    
+	    <div class="form-group">
+	      <label for="Photo">Photo:</label>
+	      <input type="file" class="form-control" id="photo" name="photo">
 	    </div>
 	    
 	    <input type="button" id="join" value="Join" class="btn btn-default">
@@ -103,10 +108,7 @@
 		var name = $("#name").val();
 		var email = $("#email").val();
 		if(idResult == "사용 가능한 아이디 입니다." && pwResult == "pw가 같습니다." && name != "" && email != ""){
-			alert("OK");
 			$("#frm").submit();
-		}else{
-			alert("No");
 		}
 	})
 </script>

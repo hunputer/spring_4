@@ -18,6 +18,9 @@
   <h3>pw : ${member.pw}</h3>
   <h3>name : ${member.name}</h3>
   <h3>email : ${member.email}</h3>
+  <div>
+  <img alt="" src="../resource/upload/member/${file.fileName}">
+  </div>
 </div>
 
 <input type="button" title="${dto.num}" value="Update" id="update" class="btn btn-warning">

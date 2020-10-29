@@ -13,5 +13,6 @@
 		<typeAlias type="com.choa.s4.member.MemberDTO" alias="memberDTO"/>
 		<typeAlias type="com.choa.s4.util.Pager" alias="Pager"/>
 		<typeAlias type="com.choa.s4.board.memo.MemoDTO" alias="MemoDTO"/>
+		<typeAlias type="com.choa.s4.member.memberFile.MemberFileDTO" alias="MemberFileDTO"/>
 	</typeAliases>
 </configuration>

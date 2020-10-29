@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.choa.s4.member.MemberDTO;
 import com.choa.s4.member.MemberService;
+import com.choa.s4.member.memberFile.MemberFileDTO;
 
 @Controller
 @RequestMapping("/member/**")
@@ -40,16 +41,15 @@ public class MemberUserController {
 	}
 	
 	@PostMapping("memberJoin")
-	public ModelAndView setMemberInsert(MemberDTO memberDTO, MultipartFile photo) throws Exception{
+	public ModelAndView setMemberInsert(MemberDTO memberDTO, MultipartFile photo, HttpSession httpSession) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		System.out.println("memberJoin");
 		System.out.println(photo.getOriginalFilename());
 		System.out.println(photo.getName());
 		System.out.println(photo.getSize());
 		System.out.println(photo.getContentType());
-		//int result = memberUserService.setMemberInsert(memberDTO);
+		int result = memberUserService.setMemberJoin(memberDTO, photo, httpSession);
 		mv.setViewName("redirect:../");
-		
 		return mv;
 	} 
 	
@@ -71,8 +71,12 @@ public class MemberUserController {
 	}
 	
 	@GetMapping("memberPage")
-	public ModelAndView getMemberOne(HttpSession httpSession) {
+	public ModelAndView getMemberOne(HttpSession httpSession) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		MemberDTO memberDTO = (MemberDTO)httpSession.getAttribute("member");
+		MemberFileDTO memberFileDTO = memberUserService.getOne(memberDTO);
+		System.out.println(memberFileDTO.getFileName());
+		mv.addObject("file", memberFileDTO);
 		mv.setViewName("member/memberPage");
 		return mv;
 	}

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.choa.s4.member.memberFile.MemberFileDAO">
+	<insert id="setInsert" parameterType="MemberFileDTO">
+       insert into memberFile values (NOTICE.nextval, #{id},#{fileName}, #{oriName})
+    </insert>
+    
+    <select id="getOne" parameterType="MemberDTO" resultType="MemberFileDTO">
+    	select * from memberFile where id=#{id}
+    </select>
+</mapper>

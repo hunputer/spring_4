@@ -65,7 +65,7 @@
 	    </div>
 	    
 	    <input type="button" id="join" value="Join" class="btn btn-default">
-	    <button type="submit" class="btn btn-default">Submit</button>
+	    <button>Test Join</button>
   </form>
 </div>
 

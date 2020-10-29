@@ -19,7 +19,7 @@
 <c:import url="../template/header.jsp"></c:import>
 <div class="container">
   <h2>${board} Write Form</h2>
-  <form id="frm" action="./${board}Write" method="post">
+  <form id="frm" action="./${board}Write" method="post" >
     <div class="form-group">
       <label for="title">Title:</label>
       <input type="text" class="form-control" id="title" placeholder="Enter Title" name="title">
@@ -33,6 +33,11 @@
      <div class="form-group">
       <label for="contents">Contents:</label>
       <textarea class="form-control" rows="10" id="contents" name="contents"></textarea>
+    </div>
+    
+    <div class="form-group">
+      <label for="file">files:</label>
+      <input type="file" class="form-control" id="file" name="file">
     </div>	
  
  	<input type="button" class="btn btn-primary" value="Write" id="btn">

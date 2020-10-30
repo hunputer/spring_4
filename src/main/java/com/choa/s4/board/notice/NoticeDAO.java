@@ -49,6 +49,10 @@ public class NoticeDAO implements BoardDAO {
 		return sqlSession.selectOne(NAMESPACE+"getCount", pager);
 	}
 	
+	public long getNum() {
+		return sqlSession.selectOne(NAMESPACE+"getNum");
+	}
+	
 	
 
 }

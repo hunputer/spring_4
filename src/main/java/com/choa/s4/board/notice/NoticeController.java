@@ -2,11 +2,14 @@ package com.choa.s4.board.notice;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.choa.s4.board.BoardDTO;
@@ -42,9 +45,9 @@ public class NoticeController {
 	}
 	
 	@PostMapping("noticeWrite")
-	public ModelAndView setInsert(NoticeDTO noticeDTO) throws Exception{
+	public ModelAndView setInsert(NoticeDTO noticeDTO, MultipartFile file, HttpSession httpSession) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		int result = noticeService.setInsert(noticeDTO);
+		int result = noticeService.setInsert(noticeDTO, file, httpSession);
 		String msg = "insert fail";
 		if(result > 0) {
 			msg = "insert Success";

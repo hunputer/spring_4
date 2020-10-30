@@ -36,7 +36,10 @@
    </select>
 
    <insert id="setInsert"  parameterType="noticeDTO">
-      insert into board values(NOTICE.nextval, #{title},#{writer},#{contents},sysdate, 0)
+   	  <selectKey keyProperty="num" resultType="Long" order="BEFORE">
+   	  	select notice.nextval from dual
+   	  </selectKey>
+      insert into board values(#{num}, #{title},#{writer},#{contents}, sysdate, 0)
    </insert>
    
    <select id="getCount" resultType="Long" parameterType="com.choa.s4.util.Pager">
@@ -55,5 +58,5 @@
         </choose>
         like '%'||#{search}||'%'
    </select>
-
+   
 </mapper>

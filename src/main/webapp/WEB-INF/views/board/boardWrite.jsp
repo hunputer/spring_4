@@ -19,7 +19,7 @@
 <c:import url="../template/header.jsp"></c:import>
 <div class="container">
   <h2>${board} Write Form</h2>
-  <form id="frm" action="./${board}Write" method="post" >
+  <form id="frm" action="./${board}Write" method="post" enctype="multipart/form-data">
     <div class="form-group">
       <label for="title">Title:</label>
       <input type="text" class="form-control" id="title" placeholder="Enter Title" name="title">

@@ -8,4 +8,8 @@
     <insert id="setInsert" parameterType="BoardFileDTO">
     	insert into boardfile values (#{num}, #{fileName}, #{oriName})
     </insert>
+    
+    <select id="getFile" parameterType="BoardFileDTO" resultType="BoardFileDTO">
+    	select * from boardfile where num = #{num}
+    </select>
 </mapper>

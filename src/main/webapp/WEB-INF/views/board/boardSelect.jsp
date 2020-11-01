@@ -26,6 +26,10 @@
   <h1>Title : ${dto.title}</h1>
   <h1>Writer : ${dto.writer}</h1>
   <h1>Contents : ${dto.contents}</h1>
+  <div>
+    <img alt="" src="../resources/upload/notice/${fileName}">
+    <a href="./fileDown?fileName=${fileName}&oriName=${oriName}">${fileName}</a>
+  </div>
   <input type="button" title="${dto.num}" value="Delete" id="del" class="btn btn-warning">
   <input type="button" title="${dto.num}" value="Update" id="update" class="btn btn-warning">
   <c:if test="${board != 'notice'}">

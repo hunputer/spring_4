@@ -141,7 +141,6 @@ public class MemberUserController {
 			mv.setViewName("common/result");
 		}
 		
-		
 		return mv;
 	}
 }

@@ -13,6 +13,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.choa.s4.board.BoardDTO;
+import com.choa.s4.board.boardFile.BoardFileDAO;
+import com.choa.s4.board.boardFile.BoardFileDTO;
+import com.choa.s4.board.boardFile.BoardFileService;
 import com.choa.s4.util.Pager;
 
 @Controller
@@ -20,6 +23,9 @@ import com.choa.s4.util.Pager;
 public class NoticeController {
 	@Autowired
 	private NoticeService noticeService;
+	
+	@Autowired
+	private BoardFileService boardFileService;
 	
 	@GetMapping("noticeWrite")
 	public ModelAndView setInsert() throws Exception{
@@ -64,8 +70,11 @@ public class NoticeController {
 	public ModelAndView getOne(NoticeDTO noticeDTO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		BoardDTO boardDTO = noticeService.getOne(noticeDTO);
+		BoardFileDTO boardFileDTO = boardFileService.getFile(boardDTO);
+		String fileName = boardFileDTO.getFileName(); 
 		mv.addObject("board", "notice");
 		mv.addObject("dto", boardDTO);
+		mv.addObject("fileName", fileName);
 		mv.addObject("path", "./noticeList");
 		mv.setViewName("board/boardSelect");
 		
@@ -114,6 +123,15 @@ public class NoticeController {
 		mv.addObject("msg", msg);
 		mv.addObject("path", "./noticeList");
 		mv.setViewName("common/result");
+		return mv;
+	}
+	
+	@GetMapping("fileDown")
+	public ModelAndView fileDown(BoardFileDTO boardFileDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("board", "notice");
+		mv.addObject("BoardFileDTO", boardFileDTO);
+		mv.setViewName("fileDown");
 		return mv;
 	}
 }

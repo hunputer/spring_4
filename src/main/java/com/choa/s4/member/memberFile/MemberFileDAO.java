@@ -20,4 +20,5 @@ public class MemberFileDAO {
 	public MemberFileDTO getOne(MemberDTO memberDTO) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getOne",memberDTO);
 	}
+	
 }

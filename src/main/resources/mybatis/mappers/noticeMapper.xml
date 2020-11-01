@@ -35,7 +35,7 @@
     where R between #{startRow} and #{lastRow}
    </select>
 
-   <insert id="setInsert"  parameterType="noticeDTO">
+   <insert id="setInsert" parameterType="noticeDTO">
    	  <selectKey keyProperty="num" resultType="Long" order="BEFORE">
    	  	select notice.nextval from dual
    	  </selectKey>

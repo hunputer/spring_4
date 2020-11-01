@@ -56,6 +56,7 @@ public class MemberUserService implements MemberService {
 	
 	public int setMemberJoin(MemberDTO memberDTO, MultipartFile photo, HttpSession session) throws Exception {
 		String path = session.getServletContext().getRealPath("/resources/upload/member");
+		System.out.println(path);
 		File file2 = new File(path);
 		String fileName = "";
 		
